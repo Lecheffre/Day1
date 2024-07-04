@@ -1,0 +1,607 @@
+styles.css
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: 'Steppe-Book';
+  src: url("./assets/fonts/Steppe-Book.ttf");
+}
+
+@font-face {
+  font-family: 'Steppe-ExtraBold';
+  src: url("./assets/fonts/Steppe-ExtraBold.ttf");
+}
+
+body {
+  background-color: #5243F4;
+  font-family: 'Steppe-Book', sans-serif;
+  color: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.button{
+  background-color: white;
+  border-radius: 60px;
+  width: 178px;
+  height: 58px;
+  box-sizing: border-box;
+  padding: 18px;
+  text-align: center;
+  font-size: 18px;
+  color: #5243F4;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+}
+
+.violet-button {
+  background-color: #5243F4;
+  color: white;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  color: gray;
+  background-color: #343434;
+}
+
+.button:hover:not(:disabled) {
+  background-color: #eeeeee;
+}
+
+.button.violet-button:hover:not(:disabled) {
+background-color: #3b2cd8;
+}
+.button:hover{
+  background-color: #eeeeee;
+}
+
+.button.violet-button:hover{
+  background-color: #3b2cd8;
+}
+
+.common-title {
+  font-family: 'Steppe-ExtraBold', sans-serif;
+  font-size: 60px;
+  line-height: 100%;
+  text-align: center;
+}
+
+app.module.ts
+
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppComponent } from './app.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    HttpClientModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+
+app.component.css
+
+.main {
+  position: relative;
+  overflow: hidden;
+}
+
+.currency {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  border: 1px solid white;
+  padding: 5px 10px;
+  height: 25px;
+  min-width: 25px;
+  border-radius: 50px;
+  text-align: center;
+  cursor: pointer;
+  line-height: 28px;
+  z-index: 1;
+  user-select: none;
+  transform: scale(1);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+  }
+
+  100% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+.header {
+  padding: 40px 0;
+}
+
+.header .container {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  vertical-align: bottom;
+}
+
+.menu {
+  margin-left: 250px;
+}
+
+.menu-list {
+  list-style: none;
+  display: flex;
+  gap: 50px;
+}
+
+.menu-item a {
+  font-size: 16px;
+  line-height: 130%;
+  text-decoration: none;
+  cursor: pointer;
+  color: white;
+}
+
+.menu-item a:hover {
+  border-bottom: 2px solid white;
+}
+
+.main-content {
+  padding-top: 161px;
+  padding-bottom: 200px;
+}
+
+.main-info {
+  max-width: 811px;
+}
+
+.main-title {
+  font-family: 'Steppe-ExtraBold', sans-serif;
+  font-size: 90px;
+  line-height: 100%;
+  margin-bottom: 20px;
+}
+
+.main-text {
+  max-width: 697px;
+  font-size: 18px;
+  line-height: 130%;
+  margin-bottom: 40px;
+}
+
+.main-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.products {
+  position: relative;
+  padding: 100px 0;
+}
+
+.products-items {
+  display: grid;
+  grid-template-columns: repeat(3, 384px);
+  gap: 90px 24px;
+  margin-top: 110px;
+}
+
+.products-item {
+  background-color: white;
+  color: #5D3427;
+}
+
+.products-item-image {
+  height: 202px;
+  text-align: center;
+}
+
+.products-item-image img {
+  height: 272px;
+  top: -70px;
+  position: relative;
+  max-width: 100%;
+}
+
+.products-item-details {
+  padding: 24px;
+}
+
+.products-item-title {
+  font-family: 'Steppe-ExtraBold', sans-serif;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.products-item-text {
+  height: 110px;
+  font-size: 14px;
+  line-height: 120%;
+  margin-bottom: 20px;
+}
+
+.products-item-extra {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.products-item-price {
+  font-family: 'Steppe-ExtraBold', sans-serif;
+  color: #5243F4;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.products-item-weight {
+  font-size: 12px;
+}
+
+.love {
+  padding: 64px 0 150px 0;
+}
+
+.love-items {
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+}
+
+.love-item {
+  width: 590px;
+  height: 453px;
+}
+
+.love-item-white {
+  background-color: white;
+  padding: 110px 80px;
+  box-sizing: border-box;
+  color: #5D3427;
+}
+
+.love-item-title {
+  font-family: 'Steppe-ExtraBold', sans-serif;
+  font-size: 24px;
+  line-height: 110%;
+  margin-bottom: 20px;
+}
+
+.love-item-text {
+  font-size: 18px;
+  line-height: 130%;
+}
+
+.order {
+  position: relative;
+  padding-bottom: 102px;
+}
+
+.order .container {
+  position: relative;
+}
+
+.order-block {
+  margin-top: 103px;
+  background-color: rgb(255 255 255 / 30%);
+  backdrop-filter: blur(50px);
+  display: flex;
+}
+
+.order-form {
+  margin-left: 200px;
+  max-width: 387px;
+  padding: 40px 0 44px 0;
+  box-sizing: border-box;
+}
+
+.order-form-text {
+  font-family: 'Steppe-ExtraBold', sans-serif;
+  font-size: 18px;
+  line-height: 130%;
+}
+
+.order-form-inputs {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.order-form-inputs input {
+  border: 1px solid white;
+  border-radius: 60px;
+  margin-bottom: 16px;
+  padding: 24px 22px;
+  font-size: 18px;
+  width: 385px;
+  height: 68px;
+  background: transparent;
+  box-sizing: border-box;
+  outline: none;
+  color: white;
+}
+
+::placeholder {
+  color: rgba(255,255, 255, 0.4);
+}
+
+.order-form-inputs .button.violet-button {
+  width: 387px;
+  height: 71px;
+}
+
+.order-block-image {
+  height: 501px;
+  margin-left: 109px;
+}
+
+.order-image {
+  height: 559px;
+  top: -58px;
+  position: relative;
+}
+.order-bg-image {
+  position: absolute;
+  top: 0;
+  right: calc(100% - 810px);
+  z-index: -1;
+}
+
+.footer {
+  padding: 126px 0 50px 0;
+  text-align: center;
+}
+
+.rights {
+  margin-top: 14px;
+  font-size: 18px;
+  line-height: 130%;
+}
+
+.line1 {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: calc(100% - 960px);
+}
+
+.line2 {
+  position: absolute;
+  z-index: -1;
+  top: -40px;
+  left: 0;
+}
+
+.line3 {
+  position: absolute;
+  z-index: -1;
+  top: -920px;
+  left: 0;
+}
+
+.order-form-inputs input.error{
+  border-color: red;
+}
+
+.sugar-free {
+  margin: 20px 0;
+  font-size: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.sugar-free > div {
+  font-size: 18px;
+}
+
+.sugar-free input[type=checkbox]{
+  display: none;
+}
+
+.sugar-free label {
+  cursor: pointer;
+  width: 80px;
+  height: 40px;
+  border-radius: 50px;
+  position: relative;
+  border: 2px solid white;
+}
+
+.sugar-free label:after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  border-radius: 45px;
+  transition: 0.3s;
+}
+
+.sugar-free input:checked + label:after {
+  left: calc(100% - 5px);
+  transform: translateX(-100%);
+}
+
+.sugar-free label:active:after {
+  width: 50px;
+}
+
+
+app.component.html
+
+
+<main class="main">
+  <div class="currency" title="Изменить валюту" id="change-currency" (click)="changeCurrency()">{{currency}}</div>
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <img src="./assets/images/logo.png" alt="Logo">
+      </div>
+      <nav class="menu">
+        <ul class="menu-list">
+          <li class="menu-item">
+            <a (click)="scrollTo(products)">Каталог</a>
+          </li>
+          <li class="menu-item">
+            <a (click)="scrollTo(love)">О нас</a>
+          </li>
+          <li class="menu-item">
+            <a (click)="scrollTo(order)">Оформление заказа</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="main-content">
+    <div class="container">
+      <img src="./assets/images/line1.png" alt="Line" class="line1">
+      <div class="main-info">
+        <h1 class="main-title">Магия вкуса в каждой крошке</h1>
+        <p class="main-text">
+          Наши рецепты вдыхают жизнь в изысканность ингредиентов: ароматное натуральное
+          масло, свежие сливки, чистый мёд и отборная мука. Мы тщательно отбираем каждый компонент
+          премиального
+          печенья, стремясь подарить вам истинное кулинарное наслаждение.
+        </p>
+        <div class="main-action">
+          <button class="button" id="main-action-button" (click)="scrollTo(products)">Заказать</button>
+        </div>
+      </div>
+      <img src="./assets/images/cookie.png" alt="Cookie" class="main-image">
+    </div>
+  </section>
+
+
+  <section class="products" id="products" #products>
+    <div class="container">
+      <img src="./assets/images/line2.png" alt="line2" class="line2">
+      <div class="common-title">Выберите печенье</div>
+      <div class="sugar-free">
+        <div>Все</div>
+        <input type="checkbox" id="switch" (change)="switchSugarFree($event)" />
+        <label for="switch"></label>
+        <div>Без сахара</div>
+      </div>
+      <div class="products-items">
+        <div class="products-item" *ngFor="let product of productsData">
+          <div class="products-item-image">
+            <img src="{{product.image}}" alt="Product">
+          </div>
+          <div class="products-item-details">
+            <div class="products-item-title">{{product.title}}</div>
+            <div class="products-item-text">
+              {{product.text}}
+            </div>
+            <div class="products-item-extra">
+              <div class="products-item-info">
+                <div class="products-item-price">{{product.price}} {{currency}}</div>
+                <div class="products-item-weight">{{product.weight}}</div>
+              </div>
+              <button class="button violet-button" (click)="scrollTo(order, product)">Заказать</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <section class="love" id="love" #love>
+    <div class="container">
+      <div class="common-title">Пекарня с любовью</div>
+      <div class="love-items">
+        <div class="love-item love-item-white">
+          <div class="love-item-title">Приготовлено с заботой, чтобы радовать вас каждый день</div>
+          <div class="love-item-text">Мы с гордостью представляем наше печенье, которое мы выпекаем вручную
+            каждый
+            день
+            с 1995 года, используя только лучшие ингредиенты. Погрузитесь в мир изысканных лакомств,
+            приготовленных с применением передовых технологий, и насладитесь их неповторимым вкусом.
+          </div>
+        </div>
+        <div class="love-item love-item-image">
+          <img src="./assets/images/love.png" alt="Cookie image">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="order" id="order" #order>
+    <img src="./assets/images/line3.png" alt="line3" class="line3">
+    <div class="container">
+      <div class="common-title">Закажите печенье</div>
+      <img src="./assets/images/breadcrumbs.png" alt="breadcrumbs" class="order-bg-image">
+      <div class="order-block">
+        <div class="order-form">
+          <div class="order-form-text">Откройте для себя волшебство вкуса с нашим премиальным печеньем!
+            Закажите
+            прямо сейчас и окунитесь в мир сладких наслаждений.
+          </div>
+          <div class="order-form-inputs" [formGroup]="form">
+            <input type="text" placeholder="Выберете печеньие" id="product" formControlName="product" [class]="{'error': form.get('product')?.invalid && (form.get('product')?.dirty || form.get('product')?.touched)}"  >
+            <input type="text" placeholder="Ваше имя" id="name" formControlName="name" [class]="{'error': form.get('name')?.invalid && (form.get('name')?.dirty || form.get('name')?.touched)}">
+            <input type="text" placeholder="Ваш телефон" id="phone" formControlName="phone" [class]="{'error': form.get('phone')?.invalid && (form.get('phone')?.dirty || form.get('phone')?.touched)}">
+            <button class="button violet-button" id="order-action" (click)="confirmOrder()" [disabled]="!form.valid">Оформить заказ</button>
+          </div>
+        </div>
+        <div class="order-block-image">
+          <img src="./assets/images/order.png" alt="Cookies" class="order-image">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="logo">
+      <img src="./assets/images/logo.png" alt="Logo">
+    </div>
+    <div class="rights">«Все права защищены»</div>
+  </footer>
+</main>
+
+app.component.ts
+
+
+
+
+
+
+
+
+
+
+
