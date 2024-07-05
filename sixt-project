@@ -685,6 +685,80 @@ export class AppComponent {
 
 
 
+Task
+
+Домашка к уроку «Деплой на продакшн»
+В этом домашнем задании мы добавим переключатель в раздел товаров, с помощью которого пользователь сможет отображать либо все товары, либо только те, которые помечены как "без сахара".
+
+Для выполнения этого задания сделайте следующие шаги:
+1. Перейдите в файл app.component.html и найдите элемент с заголовком для списка товаров <div class="common-title">Выберите печенье</div>, поставьте после него курсор и сделайте перенос строки, а затем вставьте следующий код:
+<div class="sugar-free">
+  <div>Все</div>
+  <input type="checkbox" id="switch" (change)="switchSugarFree($event)" />
+  <label for="switch"></label>
+  <div>Без сахара</div>
+</div>
+2. Далее найдите в файле app.component.ts функцию scrollTo и закрывающую её фигурную скобку } (находится на одной линии по вертикали с надписью scrollTo). Сделайте несколько переносов строк и вставьте код новой функции:
+switchSugarFree(e: any) {
+  this.http.get("https://testologia.ru/cookies" + (e.currentTarget.checked ? '?sugarfree' : ''))
+    .subscribe(data => this.productsData = data);
+}
+3. Перейдите в файл app.component.css и вставьте следующий код в самом низу файла, сделав несколько переносов строк:
+.sugar-free {
+  margin: 20px 0;
+  font-size: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.sugar-free > div {
+  font-size: 18px;
+}
+
+.sugar-free input[type=checkbox]{
+  display: none;
+}
+
+.sugar-free label {
+  cursor: pointer;
+  width: 80px;
+  height: 40px;
+  border-radius: 50px;
+  position: relative;
+  border: 2px solid white;
+}
+
+.sugar-free label:after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  border-radius: 45px;
+  transition: 0.3s;
+}
+
+.sugar-free input:checked + label:after {
+  left: calc(100% - 5px);
+  transform: translateX(-100%);
+}
+
+.sugar-free label:active:after {
+  width: 50px;
+}
+4. Перейдите в Command Prompt (Terminal) и убедитесь, что сборка проекта успешно перезапустилась автоматически и там нет ошибок. Если ваш проект не запущен, запустите его через команду ng serve.
+5. Вернитесь на сайт и обновите страницу (желательно через Ctrl+Shift+R). Проверьте, добавился ли фильтр. Проверьте, изменяется ли список товаров при его переключении.
+6. Остановите проект в Command Prompt (Terminal) через Ctrl + C.
+7. Удалите папку dist (если она есть в корне проекта).
+8. Выполните в Command Prompt (Terminal) команду
+ng build
+
+
+
 
 
 
